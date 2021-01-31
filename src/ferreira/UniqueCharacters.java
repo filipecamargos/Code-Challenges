@@ -1,6 +1,7 @@
 package ferreira;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 //Implement an algorithm to determine if a string has all unique characters.
 public class UniqueCharacters {
@@ -19,24 +20,56 @@ public class UniqueCharacters {
         stringArray.add("This won gral");
         stringArray.add("Aa Bb Cc");
 
+        //Easy with Quadratic Complexity O(n'2)
+        System.out.println("Quadratic: \n " +
+                "------------------------------");
         for (String n : stringArray) {
-            testCaseMethod(n);
+            testCaseMethodOn2(n);
+        }
+
+        // A little more effective O (n log n)
+        System.out.println("------------------------------ \n " +
+                "n Log n: \n ------------------------------");
+        for (String n : stringArray) {
+            testCaseMethodnLogn(n);
         }
     }
 
-    private static void testCaseMethod(String n) {
+    private static void testCaseMethodOn2(String n) {
         //Code to test Strings
 
         //Remove the white spaces
         String text =  n.replaceAll("\\s", "");
 
+        //Easy with Quadratic Complexity O(n'2)
         for(int i = 0; i < text.length(); i ++) {
             for (int j = 0; j < text.length(); j++) {
                 if ((i != j) && (text.charAt(i) == text.charAt(j))){
                     System.out.println( n + ": Not all unique characters");
-                    System.out.println(text.charAt(i) + " " + text.charAt(j));
                     return;
                 }
+            }
+        }
+
+        System.out.println(n + ": All unique characters");
+    }
+
+    private static void testCaseMethodnLogn(String n) {
+
+        //remove spaces
+        String text = n.replaceAll("\\s", "");
+
+        //Transform to a char[]
+        char[] textChar = text.toCharArray();
+
+        //Sort
+        Arrays.sort(textChar);
+
+        //Loop and check
+        for(int i = 0; i < text.length() - 1; i++) {
+            if (textChar[i] == textChar[i + 1]) {
+                System.out.println( n + ": Not all unique characters");
+                return;
             }
         }
 
