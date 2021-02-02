@@ -50,8 +50,4 @@ public class StringPalindrome {
         return true;
     }
 
-    /**
-     * Check if a word is a Palindrome using other data types
-     */
-
 }
