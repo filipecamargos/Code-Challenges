@@ -6,6 +6,10 @@ import java.util.Arrays;
 //Implement an algorithm to determine if a string has all unique characters.
 public class StringUniqueCharacters {
 
+    /**
+     * Driven code case
+     * @param args
+     */
     public static void main(String[] args) {
 
         //Strings to be tested
@@ -35,8 +39,11 @@ public class StringUniqueCharacters {
         }
     }
 
+    /**
+     * Quadratic performance to
+     * @param n
+     */
     private static void testCaseMethodOn2(String n) {
-        //Code to test Strings
 
         //Remove the white spaces
         String text =  n.replaceAll("\\s", "");
@@ -54,6 +61,10 @@ public class StringUniqueCharacters {
         System.out.println(n + ": All unique characters");
     }
 
+    /**
+     * N log N performance
+     * @param n
+     */
     private static void testCaseMethodnLogn(String n) {
 
         //remove spaces
