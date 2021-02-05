@@ -3,7 +3,8 @@ package ferreira;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
+/*
+ * Cracking the Code Interview Problem
  * Implement an algorithm to determine if a string has all unique characters.
  */
 public class StringUniqueCharacters {
