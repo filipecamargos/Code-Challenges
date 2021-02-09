@@ -31,16 +31,20 @@ public class ReverseString {
     static private void reverseString(String n) {
 
         //Create a String Builder to manipulate the char
-        StringBuilder reversed = new StringBuilder(n);
+        char[] reversed = n.toCharArray();
 
         //Loop thought and a reversed order to assigned the proper values
         int backWard = n.length() - 1;
 
         for (int forWard = 0; forWard < n.length(); forWard++, backWard--) {
-            reversed.setCharAt(forWard, n.charAt(backWard));
+            reversed[forWard] = n.charAt(backWard);
         }
 
+        //convert to a string
+        StringBuilder str = new StringBuilder();
+
+        str.append(reversed);
         //Display the new String
-        System.out.println(n + " : " + reversed.toString());
+        System.out.println(n + " : " + str.toString());
     }
 }
