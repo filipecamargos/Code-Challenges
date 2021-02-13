@@ -44,6 +44,7 @@ public class ReverseString {
         //Loop thought and a reversed order to assigned the proper values
         int backWard = n.length() - 1;
 
+        //Reverse it through one loop
         for (int forWard = 0; forWard < n.length(); forWard++, backWard--) {
             reversed[forWard] = n.charAt(backWard);
         }
@@ -73,6 +74,7 @@ public class ReverseString {
             reversed[i] = stackChar.pop();
         }
 
+        //Display the new String
         System.out.println(n + " : " + String.valueOf(reversed));
     }
 }
