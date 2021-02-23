@@ -3,7 +3,7 @@ import java.text.NumberFormat;
 import java.util.*;
 
 //Currency Format Challenge: https://www.hackerrank.com/challenges/java-currency-formatter/problem
-public class DataFormating {
+public class CurrencyFormating {
 
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
