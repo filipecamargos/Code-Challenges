@@ -4,7 +4,7 @@ import java.util.Scanner;
 Lexicographical Order Challenge
 Reference: https://www.hackerrank.com/challenges/java-string-compare/problem
  */
-public class SubtringLexicographicalOrder {
+public class SubstringLexicographicalOrder {
 
     public static String getSmallestAndLargest(String s, int k) {
         String smallest = "";
