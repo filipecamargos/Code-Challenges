@@ -25,7 +25,6 @@ function schamblePalindrome(testString) {
     for (let [key, value] of mapOfChar) {
         if (value % 2 == 1) {
             onlyOneEven++;
-            console.log(key)
         }
         if (onlyOneEven > 1) {
             return false;
