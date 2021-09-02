@@ -28,6 +28,22 @@ function isUnique(passedString) {
     return true;
 }
 
+//Similar to map using an array list
+function isUnique3(passedString) {
+    if (typeof passedString != 'string' || !passedString) {
+        throw new Error(`Value ${passedString} is Invalid!`)
+    }
+
+    const arrayOfChars = [];
+    for (let i of passedString) {
+        if (arrayOfChars.includes(i)) return false;
+        arrayOfChars.push(i);
+    }
+
+
+    return true;
+}
+
 //Implement without using a Data Structure O(n^2)
 function isUnique1(passedString) {
     if (typeof passedString != 'string' || !passedString) {
@@ -54,7 +70,7 @@ function isUnique2(passedString) {
 
     //The ASCII table has only 128 any more than that has a duplic character
     if (passedString.length > 128) {
-        return false
+        return false;
     }
 
     //Map the character with an array and set the location of the char as ASCII to true
@@ -93,6 +109,14 @@ try {
     console.log(isUnique2('abb') + ' => false');
     console.log(isUnique2('abcdefgop') + ' => true');
     console.log(isUnique2('abcdefgoplma') + ' => false');
+
+    console.log('-------------------------------------------')
+
+    //Testing with array maped to ASCII
+    console.log(isUnique3('abc') + ' => true');
+    console.log(isUnique3('abb') + ' => false');
+    console.log(isUnique3('abcdefgop') + ' => true');
+    console.log(isUnique3('abcdefgoplma') + ' => false');
 } catch (err) {
     console.log(err);
 }
