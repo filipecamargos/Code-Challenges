@@ -99,6 +99,8 @@ class LinkedList {
         this.size--;
     }
 
+    //remove an element
+
     //return the size
     length() {
         return this.size;
