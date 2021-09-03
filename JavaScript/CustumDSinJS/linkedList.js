@@ -32,22 +32,21 @@ class LinkedList {
             }
             interateNode.next = node;
         }
-
         this.size++;
     }
 
-    //insert element at specifc position
-    insertAt(element, position) {
-        //check for invalide postions
-        if (position < 0 || position > this.size || typeof position != 'number') {
+    //insert element at specifc index
+    insertAt(element, index) {
+        //check for invalide indexs
+        if (index < 0 || index > this.size || typeof index != 'number') {
             return console.log(
-                "Invalid Position! Please enter between 0 and length()!"
+                "Invalid index! Please enter between 0 and length()!"
             );
         }
 
-        if (position == this.size) {
+        if (index == this.size) {
             return this.add(element);
-        } else if (position == 0) {
+        } else if (index == 0) {
             // inset here ~ [head] -> [Node] -> [Node]
             let newHead = new Node(element);
             newHead.next = this.head; // inset here -> [head] -> [Node] -> [Node]
@@ -56,8 +55,7 @@ class LinkedList {
             let iteratorNode = this.head;
             let currentNode = this.head;
             var i = 0;
-
-            while (i != position) {
+            while (i != index) {
                 currentNode = iteratorNode;
                 iteratorNode = iteratorNode.next;
                 i++;
@@ -69,6 +67,36 @@ class LinkedList {
         }
 
         this.size++;
+    }
+
+    //remove an item from index
+    removeAt(index) {
+        //check for invalide indexs
+        if (index < 0 || index > this.size || typeof index != 'number' || this.isEmpty()) {
+            return console.log(
+                "Invalid index!"
+            );
+        }
+        //Index 0
+        if (index == 0) {
+            this.head = this.head.next;
+        } else {
+            let previousNode = this.head;
+            let currentNode = this.head;
+            let i = 0;
+
+            while (i != index) {
+                previousNode = currentNode;
+                currentNode = currentNode.next;
+                i++;
+            }
+
+            previousNode.next = currentNode.next;
+
+        }
+
+        //decrement the size
+        this.size--;
     }
 
     //return the size
@@ -117,4 +145,12 @@ myLinkedList.insertAt('Index 5', 5);
 myLinkedList.print();
 console.log(myLinkedList.length());
 console.log(myLinkedList.isEmpty());
+console.log("------------------------");
+myLinkedList.removeAt(0);
+myLinkedList.print();
+console.log(myLinkedList.length());
+console.log("------------------------");
+myLinkedList.removeAt(3);
+myLinkedList.print();
+console.log(myLinkedList.length());
 console.log("------------------------");
