@@ -121,6 +121,21 @@ class LinkedList {
         }
     }
 
+    //index of element
+    indexOf(element) {
+        let count = 0;
+        let current = this.head;
+
+        while (current != null) {
+            if (current.data === element) {
+                return count;
+            }
+            count++;
+            current = current.next;
+        }
+        return -1;
+    }
+
     //return the size
     length() {
         return this.size;
@@ -184,3 +199,5 @@ console.log("------------------------");
 myLinkedList.removeElement("Index 5");
 myLinkedList.print();
 console.log(myLinkedList.length());
+console.log("------------------------");
+console.log(myLinkedList.indexOf('4'));
