@@ -21,16 +21,16 @@ class LinkedList {
     //add an element
     add(element) {
         //create a node
-        let node = new Node(element);
+        let newNode = new Node(element);
         //Head -> null
         if (this.head == null) {
-            this.head = node; //head = newElement -> null
+            this.head = newNode; //head = newElement -> null
         } else {
-            let interateNode = this.head;
-            while (interateNode.next) {
-                interateNode = interateNode.next;
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
             }
-            interateNode.next = node;
+            current.next = newNode;
         }
         this.size++;
     }
@@ -52,18 +52,18 @@ class LinkedList {
             newHead.next = this.head; // inset here -> [head] -> [Node] -> [Node]
             this.head = newHead; // [inset here = head] -> [head = Node] -> [Node] -> [Node]
         } else {
-            let iteratorNode = this.head;
+            let nextNode = this.head;
             let currentNode = this.head;
             var i = 0;
             while (i != index) {
-                currentNode = iteratorNode;
-                iteratorNode = iteratorNode.next;
+                currentNode = nextNode;
+                nextNode = nextNode.next;
                 i++;
             }
 
             let newNode = new Node(element);
             currentNode.next = newNode;
-            newNode.next = iteratorNode;
+            newNode.next = nextNode;
         }
 
         this.size++;
@@ -92,14 +92,34 @@ class LinkedList {
             }
 
             previousNode.next = currentNode.next;
-
         }
 
         //decrement the size
         this.size--;
     }
 
-    //remove an element
+    //remove based on an element
+    removeElement(element) {
+
+        if (this.head && this.head.data == element) {
+            this.head = this.head.next;
+            this.size--;
+            return element;
+        }
+
+        let previous = this.head;
+        let current = this.head;
+
+        while (current != null) {
+            if (current.data == element) {
+                previous.next = current.next;
+                this.size--;
+                return current.data;
+            }
+            previous = current;
+            current = current.next;
+        }
+    }
 
     //return the size
     length() {
@@ -156,3 +176,11 @@ myLinkedList.removeAt(3);
 myLinkedList.print();
 console.log(myLinkedList.length());
 console.log("------------------------");
+console.log("------------------------");
+myLinkedList.removeElement(5);
+myLinkedList.print();
+console.log(myLinkedList.length());
+console.log("------------------------");
+myLinkedList.removeElement("Index 5");
+myLinkedList.print();
+console.log(myLinkedList.length());
