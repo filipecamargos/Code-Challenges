@@ -5,8 +5,8 @@
 
 //create the node
 class Node {
-    constructor(element) {
-        this.data = element;
+    constructor(data) {
+        this.data = data;
         this.next = null;
     }
 }
@@ -19,9 +19,8 @@ class LinkedList {
     }
 
     //add an element
-    add(element) {
-        let newNode = new Node(element);
-
+    add(data) {
+        let newNode = new Node(data);
         if (this.head == null) {
             this.head = newNode;
         } else {
@@ -35,98 +34,109 @@ class LinkedList {
     }
 
     //insert element at specifc index
-    insertAt(element, index) {
-        //check for invalide indexs
-        if (index < 0 || index > this.size || typeof index != 'number') {
-            return console.log(
-                "Invalid index! Please enter between 0 and length()!"
-            );
+    insertAt(data, index) {
+        if (index < 0 || index > this.size) {
+            throw new Error('Invalid index at insetAt()!');
         }
 
-        if (index == this.size || index == 0) {
-            this.add(element);
+        if (this.head == null || index == this.size) {
+            this.add(data);
             return;
-        } else {
-            let newNode = new Node(element);
-            let it = 0;
-            let previousNode = this.head;
-            let currentNode = this.head;
+        }
 
-            while (it != index) {
-                previousNode = currentNode;
-                currentNode = currentNode.next;
-                it++;
+        let newNode = new Node(data);
+
+        if (index == 0) {
+            let tempNode = this.head;
+            this.head = newNode;
+            newNode.next = tempNode;
+        } else {
+            let currentNode = this.head;
+            let nextNode = this.head;
+            let position = 0
+
+            while (position != index) {
+                currentNode = nextNode;
+                nextNode = nextNode.next;
+                position++;
             }
 
-            previousNode.next = newNode;
-            newNode.next = currentNode;
+            currentNode.next = newNode;
+            newNode.next = nextNode;
         }
         this.size++;
     }
 
     //remove an item from index
     removeAt(index) {
-        //check for invalide indexs
-        if (index < 0 || index > this.size || typeof index != 'number' || this.isEmpty()) {
-            return console.log(
-                "Invalid index!"
-            );
+        if (index < 0 || index >= this.size) {
+            throw new Error('Invalid index at removeAt(index)!');
+        } else if (this.head == null) {
+            throw new Error('Empty List at removeAt(index)!');
         }
-        //Index 0
+
+        let returnedData = null;
+
         if (index == 0) {
+            returnedData = this.head.data;
             this.head = this.head.next;
         } else {
             let previousNode = this.head;
             let currentNode = this.head;
-            let i = 0;
+            let position = 0;
 
-            while (i != index) {
+            while (position != index) {
                 previousNode = currentNode;
                 currentNode = currentNode.next;
-                i++;
+                position++;
             }
 
+            returnedData = currentNode.data;
             previousNode.next = currentNode.next;
         }
         this.size--;
+        return returnedData;
     }
 
     //remove based on an element
-    removeElement(element) {
-
-        if (this.head && this.head.data == element) {
+    removeElement(data) {
+        if (this.head.data == data) {
             this.head = this.head.next;
-            this.size--;
-            return element;
+            return true;
         }
 
-        let previous = this.head;
-        let current = this.head;
-
-        while (current != null) {
-            if (current.data == element) {
-                previous.next = current.next;
+        let previousNode = this.head;
+        let currentNode = this.head;
+        console.log(currentNode)
+        while (currentNode != null) {
+            if (currentNode.data == data) {
+                previousNode.next = currentNode.next;
                 this.size--;
-                return current.data;
+                return true;
             }
-            previous = current;
-            current = current.next;
+
+            previousNode = currentNode;
+            currentNode = currentNode.next;
         }
+
+        return -1;
     }
 
     //index of element
-    indexOf(element) {
-        let count = 0;
-        let current = this.head;
-
-        while (current != null) {
-            if (current.data === element) {
-                return count;
-            }
-            count++;
-            current = current.next;
+    indexOf(data) {
+        if (this.head.data == data) {
+            return 0;
         }
-        return -1;
+
+        let currentNode = this.head;
+        let index = 0;
+        while (currentNode) {
+            if (currentNode.data == data) {
+                return index;
+            }
+            currentNode = currentNode.next;
+            index++;
+        }
     }
 
     //return the size
@@ -136,20 +146,22 @@ class LinkedList {
 
     //check if it is empty
     isEmpty() {
-        return this.size === 0;
+        return this.head == null;
     }
 
     //print
     print() {
-        let interateNode = this.head;
-        while (interateNode) {
-            console.log(interateNode.data + " -> ");
-            interateNode = interateNode.next;
+        let currentNode = this.head;
+        while (currentNode) {
+            console.log(`-> ${currentNode.data}`)
+            currentNode = currentNode.next;
         }
     }
 }
 
 const myLinkedList = new LinkedList();
+console.log(myLinkedList.length());
+console.log(myLinkedList.isEmpty());
 myLinkedList.add("1");
 myLinkedList.add("2");
 myLinkedList.add("3");
@@ -184,7 +196,6 @@ myLinkedList.removeAt(3);
 myLinkedList.print();
 console.log(myLinkedList.length());
 console.log("------------------------");
-console.log("------------------------");
 myLinkedList.removeElement(5);
 myLinkedList.print();
 console.log(myLinkedList.length());
@@ -193,4 +204,4 @@ myLinkedList.removeElement("Index 5");
 myLinkedList.print();
 console.log(myLinkedList.length());
 console.log("------------------------");
-console.log(myLinkedList.indexOf('4'));
+console.log(myLinkedList.indexOf('Index 3'));
