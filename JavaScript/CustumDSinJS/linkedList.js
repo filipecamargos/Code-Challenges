@@ -20,17 +20,16 @@ class LinkedList {
 
     //add an element
     add(element) {
-        //create a node
         let newNode = new Node(element);
-        //Head -> null
+
         if (this.head == null) {
-            this.head = newNode; //head = newElement -> null
+            this.head = newNode;
         } else {
-            let current = this.head;
-            while (current.next) {
-                current = current.next;
+            let currentNode = this.head;
+            while (currentNode.next) {
+                currentNode = currentNode.next;
             }
-            current.next = newNode;
+            currentNode.next = newNode;
         }
         this.size++;
     }
@@ -44,28 +43,24 @@ class LinkedList {
             );
         }
 
-        if (index == this.size) {
-            return this.add(element);
-        } else if (index == 0) {
-            // inset here ~ [head] -> [Node] -> [Node]
-            let newHead = new Node(element);
-            newHead.next = this.head; // inset here -> [head] -> [Node] -> [Node]
-            this.head = newHead; // [inset here = head] -> [head = Node] -> [Node] -> [Node]
+        if (index == this.size || index == 0) {
+            this.add(element);
+            return;
         } else {
-            let nextNode = this.head;
+            let newNode = new Node(element);
+            let it = 0;
+            let previousNode = this.head;
             let currentNode = this.head;
-            var i = 0;
-            while (i != index) {
-                currentNode = nextNode;
-                nextNode = nextNode.next;
-                i++;
+
+            while (it != index) {
+                previousNode = currentNode;
+                currentNode = currentNode.next;
+                it++;
             }
 
-            let newNode = new Node(element);
-            currentNode.next = newNode;
-            newNode.next = nextNode;
+            previousNode.next = newNode;
+            newNode.next = currentNode;
         }
-
         this.size++;
     }
 
@@ -93,8 +88,6 @@ class LinkedList {
 
             previousNode.next = currentNode.next;
         }
-
-        //decrement the size
         this.size--;
     }
 
