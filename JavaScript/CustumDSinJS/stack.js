@@ -13,35 +13,43 @@ class MyStack {
     push(data) {
         let newNode = new Node(data);
 
-        if (this.top == null) {
+        if (this.top === null) {
             this.top = newNode;
         } else {
             let tempNode = this.top;
             this.top = newNode;
             this.top.link = tempNode;
         }
-    }
 
-    pop() {
-        if (this.top == null) {
-            throw new Error('Trying to pop on a empty stack!')
-        }
-
-        let dataPoped = this.top.data;
-        this.top = this.top.link;
-        return dataPoped;
+        return;
     }
 
     pick() {
         return this.top.data;
     }
 
-    print() {
-        let node = this.top;
-        while (node) {
-            console.log('\tstack -> ' + node.data);
-            node = node.link;
+    pop() {
+        if (this.top === null) {
+            throw new Error('Error: Trying to pop() empty stack!')
         }
+
+        let returnedData = this.top.data;
+        this.top = this.top.link;
+
+        return returnedData;
+    }
+
+    print() {
+        if (this.top === null) {
+            console.log('Empty Stack!')
+            return;
+        }
+        let currentNode = this.top;
+        while (currentNode) {
+            console.log(`Stack -> ${currentNode.data}`)
+            currentNode = currentNode.link;
+        }
+        return;
     }
 }
 
@@ -54,6 +62,9 @@ myStack.push(1);
 console.log('push(2)')
 myStack.push(2);
 console.log('pick(): ' + myStack.pick())
+console.log('print():');
+myStack.print();
+console.log('pop(): ' + myStack.pop());
 console.log('print():');
 myStack.print();
 console.log('pop(): ' + myStack.pop());

@@ -55,7 +55,7 @@ class LinkedList {
             let nextNode = this.head;
             let position = 0
 
-            while (position != index) {
+            while (position < index) {
                 currentNode = nextNode;
                 nextNode = nextNode.next;
                 position++;
@@ -85,7 +85,7 @@ class LinkedList {
             let currentNode = this.head;
             let position = 0;
 
-            while (position != index) {
+            while (position < index) {
                 previousNode = currentNode;
                 currentNode = currentNode.next;
                 position++;
@@ -102,12 +102,13 @@ class LinkedList {
     removeElement(data) {
         if (this.head.data == data) {
             this.head = this.head.next;
+            this.size--;
             return true;
         }
 
         let previousNode = this.head;
         let currentNode = this.head;
-        console.log(currentNode)
+
         while (currentNode != null) {
             if (currentNode.data == data) {
                 previousNode.next = currentNode.next;
@@ -188,7 +189,7 @@ myLinkedList.print();
 console.log(myLinkedList.length());
 console.log(myLinkedList.isEmpty());
 console.log("------------------------");
-myLinkedList.removeAt(0);
+myLinkedList.removeAt(myLinkedList.length() - 1);
 myLinkedList.print();
 console.log(myLinkedList.length());
 console.log("------------------------");
