@@ -30,9 +30,13 @@ class Queue {
 
     //print the elements
     print() {
-        this.element.forEach(element => {
-            console.log('\t' + element);
-        });
+        if (this.element.length == 0) {
+            console.log('Queue Stack!');
+            return;
+        }
+        for (let i = this.element.length - 1; i >= 0; i--) {
+            console.log(this.element[i]);
+        }
     }
 }
 
