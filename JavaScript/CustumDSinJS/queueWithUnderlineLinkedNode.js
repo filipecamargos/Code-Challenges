@@ -1,22 +1,72 @@
-//Queue using a array as underline Data Structure
+//Queue using a Node Link as underline Data Structure
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.link = null;
+    }
+}
 
 class Queue {
-    constructor() {}
+    constructor() {
+        this.head = null;
+    }
 
     //add an element to the queue
-    add(data) {}
+    add(data) {
+        let newNode = new Node(data);
+
+        if (this.head == null) {
+            this.head = newNode;
+        } else {
+            let currentNode = this.head;
+
+            while (currentNode.next) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = newNode;
+        }
+    }
 
     //remove and return the head element
-    remove() {}
+    remove() {
+        if (this.head == null) {
+            throw new Error('Error: remove() on an empty queue!')
+        }
+
+        let tempNode = this.head;
+        this.head = this.head.next;
+        return tempNode.data;
+    }
 
     //Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
-    peek() {}
+    peek() {
+        if (this.head == null) {
+            return -1;
+        }
+
+        return this.head.data;
+    }
 
     //check if it empty
-    isEmpty() {}
+    isEmpty() {
+        return this.head == null;
+    }
 
     //print the elements
-    print() {}
+    print() {
+        if (this.head == null) {
+            console.log('Empty Queue!')
+            return;
+        }
+
+        let currentNode = this.head;
+        console.log('Top:')
+        while (currentNode) {
+            console.log(`\t${currentNode.data}`)
+            currentNode = currentNode.next;
+        }
+
+    }
 }
 
 //test
