@@ -9,6 +9,7 @@ class Node {
 class Queue {
     constructor() {
         this.head = null;
+        this.tail = null;
     }
 
     //add an element to the queue
@@ -17,13 +18,11 @@ class Queue {
 
         if (this.head == null) {
             this.head = newNode;
+            this.tail = newNode;
         } else {
-            let currentNode = this.head;
-
-            while (currentNode.next) {
-                currentNode = currentNode.next;
-            }
-            currentNode.next = newNode;
+            let temp = this.tail;
+            temp.next = newNode;
+            this.tail = newNode;
         }
     }
 
