@@ -1,8 +1,8 @@
 class Node {
-    constructor(data) {
-        this.data;
-        this.right;
-        this.left
+    constructor(value) {
+        this.data = value;
+        this.right = null;
+        this.left = null;
     }
 }
 
@@ -11,39 +11,36 @@ class MyBinarySearch {
         this.root = null;
     }
 
-    insert(data) {
-        let newNode = new Node(data);
-
-        if (this.root == null) {
+    insert(value) {
+        let newNode = new Node(value);
+        if (this.root === null) {
             this.root = newNode;
         } else {
             this.insertNode(this.root, newNode);
         }
     }
 
-    remove(data) {
-
-    }
-
     insertNode(node, newNode) {
-        //left iteration
+        //decide what side to move left or right
         if (newNode.data < node.data) {
-            if (node.left == null) {
+            //move left
+            if (node.left === null) {
                 node.left = newNode;
             } else {
                 this.insertNode(node.left, newNode);
             }
-        }
-        //right iteration
-        else {
-            if (newNode.data > node.data) {
-                if (node.right == null) {
-                    node.right = newNode;
-                }
+        } else {
+            if (node.right === null) {
+                node.right = newNode;
             } else {
                 this.insertNode(node.right, newNode);
             }
         }
+
+    }
+
+    remove(data) {
+
     }
 }
 
