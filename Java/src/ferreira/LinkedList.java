@@ -50,6 +50,10 @@ public class LinkedList {
             this.length++;
         }
 
+        public int size() {
+            return this.length;
+        }
+
         public void display() {
             Node iteratorNode = this.head;
             while (iteratorNode != null) {
@@ -63,12 +67,13 @@ public class LinkedList {
 
     public static void main(String[] args) {
         CustomLinkedList list = new CustomLinkedList();
-        System.out.println("Add from 1 to 5:");
+        System.out.println("Adding from 1 to 5:");
         for (int i = 1; i <= 5; i++) {
             list.add(i);
         }
         System.out.println("Calling Display");
         list.display();
+        System.out.println("Getting Size: " + list.size());
     }
 }
 
