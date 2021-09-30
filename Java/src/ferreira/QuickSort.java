@@ -11,18 +11,18 @@ public class QuickSort {
 
     //fist thing find the sorted position of the the first element
     //second do the sorting with the left part and the right part dividing and coquering
-
     public static void quickSort(int[] myArray, int start, int end) {
         if (end - start < 2) {
             return;
         }
 
-        int pivot = partition(myArray, start, end);
-        partition(myArray, start, pivot);
-        partition(myArray, pivot + 1, end);
+        int pivot = partitionSort(myArray, start, end);
+        partitionSort(myArray, start, pivot);
+        partitionSort(myArray, pivot + 1, end);
+
     }
 
-    public static int partition(int[] myArray, int start, int end) {
+    public static int partitionSort(int[] myArray, int start, int end) {
         int pivot = myArray[start];
         int i = start;
         int j = end;
@@ -30,7 +30,7 @@ public class QuickSort {
         while (i < j) {
             while (i < j && myArray[--j] >= pivot);
             myArray[i] = myArray[j];
-            while (i < j && myArray[++i] <= pivot);
+            while(i < j && myArray[++i] <= pivot);
             myArray[j] = myArray[i];
         }
 
