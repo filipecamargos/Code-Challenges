@@ -1,2 +1,2 @@
-# Code-Challenges
-The purpose of this repository is to keep track of some coding challenges practice and the solution used.
+# Java sandbox
+This is my Java sandbox where I refresh Java syntax, play with common coding challenges, write some algorithms and data structures.
