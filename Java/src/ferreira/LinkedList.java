@@ -58,7 +58,8 @@ public class LinkedList {
         }
 
         public int get(int index) {
-            if (index > this.length - 1 || index < 0){
+            if (index < 0 || index >= this.length){
+                System.out.println("Index out of range!");
                 return -1;
             }
 
@@ -92,6 +93,10 @@ public class LinkedList {
         }
 
         public void add(int index, int data) {
+            if (index < 0 || index > this.length) {
+                System.out.println("Index out of range!");
+                return;
+            }
             Node newNode = new Node(data);
 
             if (index == 0) {
@@ -115,6 +120,33 @@ public class LinkedList {
             this.length++;
         }
 
+        public int remove(int index) {
+            if (index < 0 || index > this.length) {
+                System.out.println("Index out of range!");
+                return - 1;
+            }
+
+            Node returnNode = null;
+            if (index == 0) {
+                returnNode = this.head;
+                this.head = this.head.next;
+            } else {
+                int indexTrack = 0;
+                Node next = this.head;
+                Node prev = this.head;
+                while(indexTrack != index) {
+                    prev = next;
+                    next = next.next;
+                    indexTrack++;
+                }
+                returnNode = next;
+                prev.next = next.next;
+
+            }
+            this.length--;
+            return returnNode.data;
+        }
+
         public int size() {
             return this.length;
         }
@@ -122,13 +154,12 @@ public class LinkedList {
         public void display() {
             System.out.println("Calling Display");
             System.out.println("----------------------");
-
             Node iteratorNode = this.head;
             while (iteratorNode != null) {
-                System.out.println(iteratorNode.getData());
+                System.out.print(iteratorNode.getData() + " -> ");
                 iteratorNode = iteratorNode.getNext();
             }
-
+            System.out.println("\n----------------------");
         }
 
     }
@@ -164,12 +195,21 @@ public class LinkedList {
         System.out.println("Get at index 0 -> expected 0 " + "result: " + list.get(0));
         System.out.println("Get at index (size() - 1) -> expected 6 " + "result: " + list.get(list.size() - 1));
 
-        System.out.println("Get index of int 0 -> expected 0 " + "result: " + list.indexOf(0));
-        System.out.println("Get index of int 6 -> expected 8 " + "result: " + list.indexOf(6));
-        System.out.println("Get index of int 9 -> expected 5 " + "result: " + list.indexOf(9));
-        System.out.println("Get index of int 2 -> expected 3 " + "result: " + list.indexOf(2));
+        System.out.println("Get index of int 0 -> expected index 0 " + "result: " + list.indexOf(0));
+        System.out.println("Get index of int 6 -> expected index 8 " + "result: " + list.indexOf(6));
+        System.out.println("Get index of int 9 -> expected index 5 " + "result: " + list.indexOf(9));
+        System.out.println("Get index of int 2 -> expected index 3 " + "result: " + list.indexOf(2));
         System.out.println("Get size -> expected 9 " + "result: " + list.size());
 
+        list.display();
+        System.out.println("Remove at index 0 -> expected 0 " + "result: " + list.remove(0));
+        list.display();
+        System.out.println("Remove at index 6 -> expected 5 " + "result: " + list.remove(6));
+        list.display();
+        System.out.println("Remove at index 3 -> expected 3 " + "result: " + list.remove(3));
+        list.display();
+        System.out.println("Remove at index (size() - 1) -> expected 6 " + "result: " + list.remove(list.size() - 1));
+        list.display();
 
     }
 }
