@@ -147,10 +147,41 @@ public class LinkedList {
             return returnNode.data;
         }
 
+        public boolean removeData(int data) {
+            if (this.head.data == data) {
+                this.head = this.head.next;
+                this.length--;
+                return true;
+            }
+            Node prev = this.head;
+            Node next = this.head;
+            while(next != null) {
+                if (next.data == data) {
+                    prev.next = next.next;
+                    return true;
+                }
+                prev = next;
+                next = next.next;
+            }
+            System.out.print("Error: Data Not Found!");
+            return false;
+        }
+
         public int size() {
             return this.length;
         }
+
+        public void clear() {
+            if (this.head == null) {
+                System.out.println("Empty list!");
+            } else {
+                this.head = null;
+            }
+        }
         
+        public boolean isEmpty() {
+            return this.head == null;
+        }
         public void display() {
             System.out.println("Calling Display");
             System.out.println("----------------------");
@@ -210,7 +241,16 @@ public class LinkedList {
         list.display();
         System.out.println("Remove at index (size() - 1) -> expected 6 " + "result: " + list.remove(list.size() - 1));
         list.display();
-
+        System.out.println("Size() ? " + list.size());
+        System.out.println("IsEmpty() ? " + list.isEmpty());
+        System.out.println("Remove int data 1 expected: true result " + list.removeData(1));
+        System.out.println("Remove int data 4 expected: true result " + list.removeData(4));
+        System.out.println("Remove int data 7 expected: true result " + list.removeData(7));
+        System.out.println("Remove int data 7 expected: false result " + list.removeData(7));
+        list.display();
+        System.out.println("clear()");
+        list.clear();
+        list.display();
     }
 }
 
