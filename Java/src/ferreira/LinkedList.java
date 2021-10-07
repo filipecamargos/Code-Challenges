@@ -158,6 +158,7 @@ public class LinkedList {
             while(next != null) {
                 if (next.data == data) {
                     prev.next = next.next;
+                    this.length--;
                     return true;
                 }
                 prev = next;
@@ -176,6 +177,7 @@ public class LinkedList {
                 System.out.println("Empty list!");
             } else {
                 this.head = null;
+                this.length = 0;
             }
         }
         
@@ -251,6 +253,9 @@ public class LinkedList {
         System.out.println("clear()");
         list.clear();
         list.display();
+        System.out.println("IsEmpty() ? " + list.isEmpty());
+        System.out.println("Size() ? " + list.size());
+
     }
 }
 
