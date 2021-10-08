@@ -45,7 +45,7 @@ public class BinarySearchingThree {
             return NodeExists(this.root, data);
         }
 
-        public boolean NodeExists(Node root, int data) {
+        private boolean NodeExists(Node root, int data) {
             if (root == null) {
                 return false;
             }
@@ -59,6 +59,21 @@ public class BinarySearchingThree {
             }
 
             return NodeExists(root.right, data);
+        }
+
+        public int height() {
+            return getHeight(this.root);
+        }
+
+        private int getHeight(Node root) {
+            if (root == null) {
+                return 0;
+            }
+
+            int left = getHeight(root.left);
+            int right = getHeight(root.right);
+
+            return Math.max(left, right) + 1;
         }
 
         public void display() {
@@ -82,9 +97,11 @@ public class BinarySearchingThree {
         three.add(2);
         three.add(7);
         three.add(4);
+        three.add(9);
         three.display();
         System.out.println(three.get(5)); //true
         System.out.println(three.get(-1)); //false
+        System.out.println(three.height());
     }
 
 
