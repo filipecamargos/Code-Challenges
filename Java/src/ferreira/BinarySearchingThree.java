@@ -14,10 +14,14 @@ public class BinarySearchingThree {
         }
     }
     static public class BinarySearch {
-        private Node root = null;
+        private Node root;
+
+        BinarySearch() {
+            this.root = null;
+        }
 
         public void add(int data) {
-            if (root == null) {
+            if (this.root == null) {
                 this.root = new Node(data);
             } else {
                 addNode(this.root, data);
