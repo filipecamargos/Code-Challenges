@@ -107,6 +107,4 @@ public class BinarySearchingThree {
         System.out.println(three.get(-1)); //false
         System.out.println(three.height());
     }
-
-
 }

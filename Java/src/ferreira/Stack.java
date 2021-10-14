@@ -30,8 +30,7 @@ public class Stack {
                 this.top = newNode;
                 this.top.link = null;
             } else {
-                Node tempNode = this.top;
-                newNode.link = tempNode;
+                newNode.link = this.top;
                 this.top = newNode;
             }
 
