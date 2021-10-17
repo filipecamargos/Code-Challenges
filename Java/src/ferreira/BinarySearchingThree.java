@@ -36,7 +36,6 @@ public class BinarySearchingThree {
                 }
                 addNode(root.right, data);
             } else {
-                //got left
                 if (root.left == null) {
                     root.left = new Node(data);
                     return;
@@ -52,9 +51,7 @@ public class BinarySearchingThree {
         private boolean NodeExists(Node root, int data) {
             if (root == null) {
                 return false;
-            }
-
-            if (root.data == data) {
+            } else if (root.data == data) {
                 return true;
             }
 
@@ -73,7 +70,6 @@ public class BinarySearchingThree {
             if (root == null) {
                 return 0;
             }
-
             int left = getHeight(root.left);
             int right = getHeight(root.right);
 
@@ -97,14 +93,26 @@ public class BinarySearchingThree {
 
     public static void main(String[] args) {
         BinarySearch three = new BinarySearch();
-        three.add(5);
+        /**
+         *              5
+         *             / \
+         *            2   7
+         *             \   \
+         *              4   9
+         *             /
+         *            3    
+        */
+        three.add(5);      
         three.add(2);
         three.add(7);
         three.add(4);
         three.add(9);
+        three.add(3);
         three.display();
-        System.out.println(three.get(5)); //true
-        System.out.println(three.get(-1)); //false
+        System.out.println(three.get(5));
+        System.out.println(three.get(9));
+        System.out.println(three.get(2));
+        System.out.println(three.get(-1));
         System.out.println(three.height());
     }
 }
