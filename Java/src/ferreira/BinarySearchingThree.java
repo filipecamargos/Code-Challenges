@@ -1,6 +1,8 @@
 package ferreira;
 import java.util.*;
 
+import javax.swing.text.StyledEditorKit;
+
 public class BinarySearchingThree {
     static private class Node {
         public int data;
@@ -81,14 +83,31 @@ public class BinarySearchingThree {
             traverseDisplay(this.root);
         }
 
+        public void reverseTree() {
+            reverseNodes(this.root);
+        }
+
+        private void reverseNodes(Node root) {
+            if (root == null) {
+                return;
+            }
+
+            Node temp = root.left;
+            root.left = root.right;
+            root.right = temp;
+
+            reverseNodes(root.left);
+            reverseNodes(root.right);            
+        }
+
         private void traverseDisplay(Node root) {
             if (root == null) {
                 return;
             }
-            traverseDisplay(root.left);
             System.out.println("-> " + root.data);
+            traverseDisplay(root.left);
             traverseDisplay(root.right);
-        }   
+        }
     }
 
     public static void main(String[] args) {
@@ -114,5 +133,8 @@ public class BinarySearchingThree {
         System.out.println(three.get(2));
         System.out.println(three.get(-1));
         System.out.println(three.height());
+        System.out.println("Reverse Nodes");
+        three.reverseTree();
+        three.display();
     }
 }
